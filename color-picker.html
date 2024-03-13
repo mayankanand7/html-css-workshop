@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Picker</title>
+</head>
+
+<body>
+    <div id="color-picker-container" style="margin: 10px 10px; height: 10px;">
+        <form action="">
+            <input id="color_code_text" type="text" name="colorHex" placeholder="Enter color code" />
+            <input type="submit" value="Click to View Color" onClick="showColor();" />
+        </form>
+    </div>
+    <br />
+    <div id="color_picker_output"
+        style="margin: 10px 10px; padding: 10px 10px; border: 2px solid; height: 10px; width: 160px;">
+
+    </div>
+    <script type="text/javascript">
+        function showColor() {
+            const colorCodeHtml = document.getElementById("color_code_text");
+            let colorCode = colorCodeHtml === undefined || colorCodeHtml === null ? null : colorCodeHtml.value;
+
+            if (colorCode === null || colorCode.length < 6) {
+                alert("Bad input");
+                return;
+            }
+            colorCode = '#' + colorCode;
+
+            const outputElement = document.getElementById("color_picker_output");
+            // outputElement.style.setProperty('background-color', colorCode);
+            outputElement.style.backgroundColor = colorCode;
+        }
+    </script>
+</body>
+
+</html>

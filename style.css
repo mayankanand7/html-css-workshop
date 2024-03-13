@@ -1,0 +1,30 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    background-color: #cccccc;
+}
+
+#section-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: outset;
+    border-width: 1px;
+    padding: 0px 125px 0px 125px;
+}
+
+ul {
+    margin: 20px;
+    list-style: none;
+}
+
+ul > li {
+    display: inline-block;
+}
+
+#login > * {
+    margin: 15px;
+}
+
+#section-main {
+    margin: 100px 100px;
+}
