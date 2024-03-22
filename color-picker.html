@@ -6,36 +6,66 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Color Picker</title>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+
+    <script type="text/javascript">
+        function showColor() {
+            const colorCodeHtml = document.getElementById("color-code-text");
+
+            const colorCode = colorCodeHtml === undefined || colorCodeHtml === null ? null : colorCodeHtml.value;
+            if (colorCode === null) {
+                alert("Bad input");
+                return;
+            }
+            colorCodeHtml.value = "";
+
+            const outputElement = document.getElementById("color-picker-output");
+            // outputElement.style.backgroundColor = '#' + colorCode;
+
+            prepareColorElements(outputElement, colorCode);
+        }
+
+        function prepareColorElements(parentDiv, xVal) {
+            for (let j = 0; j < 256; j++) {
+                const rowId = "row-" + j;
+                var rowDiv = document.createElement("div");
+                rowDiv.style.height = "2px";
+
+                parentDiv.appendChild(rowDiv);
+
+                for (let k = 0; k < 256; k++) {
+                    let color = "rgb(" + xVal + "," + j + "," + k + ")";
+
+                    const rowElmId = "row-" + j + "-col-" + k;
+                    var colDiv = document.createElement("div");
+                    colDiv.style.height = "2px";
+                    colDiv.style.width = "2px";
+                    colDiv.style.backgroundColor = color;
+                    colDiv.style.display = "inline-block";
+
+                    rowDiv.appendChild(colDiv);
+                }
+            }
+        }
+    </script>
 </head>
 
 <body>
     <div id="color-picker-container" style="margin: 10px 10px; height: 10px;">
-        <form action="">
-            <input id="color_code_text" type="text" name="colorHex" placeholder="Enter color code" />
-            <input type="submit" value="Click to View Color" onClick="showColor();" />
-        </form>
+        <input id="color-code-text" type="text" name="colorHex" placeholder="Enter color code" />
+        <input type="button" value="Click to View Color" onclick="showColor()" />
     </div>
     <br />
-    <div id="color_picker_output"
-        style="margin: 10px 10px; padding: 10px 10px; border: 2px solid; height: 10px; width: 160px;">
+    <!-- <div id="color-picker-output" style="margin: 10px; padding: 10px; border: 2px solid; height: 255px; width: 255px;">
 
-    </div>
-    <script type="text/javascript">
-        function showColor() {
-            const colorCodeHtml = document.getElementById("color_code_text");
-            let colorCode = colorCodeHtml === undefined || colorCodeHtml === null ? null : colorCodeHtml.value;
-
-            if (colorCode === null || colorCode.length < 6) {
-                alert("Bad input");
-                return;
-            }
-            colorCode = '#' + colorCode;
-
-            const outputElement = document.getElementById("color_picker_output");
-            // outputElement.style.setProperty('background-color', colorCode);
-            outputElement.style.backgroundColor = colorCode;
-        }
-    </script>
+    </div> -->
+    <div id="color-picker-output"></div>
 </body>
 
 </html>
